@@ -1,0 +1,14 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="Positive tests suite">
+    <test name="positive">
+                <groups>
+                    <run>
+                        <include name="positive"/>
+                    </run>
+                </groups>
+        <packages>
+            <package name="scenarios"/>
+        </packages>
+
+    </test>
+</suite>
