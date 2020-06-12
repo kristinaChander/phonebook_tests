@@ -10,14 +10,14 @@ import services.RequestServices;
 public class CreateContactNegative {
     private RequestServices requestServices;
 
-    @BeforeMethod
+    @BeforeMethod(groups = "negative")
     public void setUp() {
         requestServices = new RequestServices();
     }
 
     @Test(groups = {"negative"},
-            description = "checking if the service allows to create a contact with a phone number in wrong format" )
-    public void createContactPhoneWrongFormat(){
+            description = "checking if the service allows to create a contact with a phone number in wrong format")
+    public void createContactPhoneWrongFormat() {
         int userId = requestServices.addUser(Constants.USER_FIRST_NAME).getId();
         ContactsDTO contactCreationResponse = requestServices.addContact(Constants.PHONE_NUMBER_WRONG_FORMAT, userId);
 

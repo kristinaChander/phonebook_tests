@@ -10,14 +10,14 @@ import services.RequestServices;
 public class DeleteContactPositive {
     private RequestServices requestServices;
 
-    @BeforeMethod
+    @BeforeMethod(groups = "positive")
     public void setUp() {
         requestServices = new RequestServices();
     }
 
     @Test(groups = {"positive"},
             description = "checking the possibility to delete existing user contact")
-    public void deleteExistingContact(){
+    public void deleteExistingContact() {
         int userId = requestServices.addUser(Constants.USER_FIRST_NAME1).getId();
         int contactId = requestServices.addContact(Constants.PHONE_NUMBER, userId).getId();
         Response contactCreationResponse = requestServices.deleteContact(userId, contactId);

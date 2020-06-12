@@ -127,15 +127,15 @@
     </build>
 
     <profiles>
-    <profile>
-        <id>AllTests</id>
-        <activation>
-            <activeByDefault>true</activeByDefault>
-        </activation>
-        <properties>
-            <suite.xml>src/test/resources/allTestsSuite.xml</suite.xml>
-        </properties>
-    </profile>
+        <profile>
+            <id>AllTests</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <suite.xml>src/test/resources/allTestsSuite.xml</suite.xml>
+            </properties>
+        </profile>
 
         <profile>
             <id>Positive</id>
@@ -147,14 +147,14 @@
             </properties>
         </profile>
         <profile>
-        <id>Negative</id>
-        <activation>
-            <activeByDefault>false</activeByDefault>
-        </activation>
-        <properties>
-            <suite.xml>src/test/resources/negativeTests.xml</suite.xml>
-        </properties>
-    </profile>
+            <id>Negative</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <suite.xml>src/test/resources/negativeTests.xml</suite.xml>
+            </properties>
+        </profile>
     </profiles>
 
 

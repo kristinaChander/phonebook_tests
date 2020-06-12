@@ -30,13 +30,14 @@ public class RequestServices {
                 .firstName(firstName)
                 .build();
     }
+
     public ContactsDTO contactsDTO(String phone) {
         return ContactsDTO.builder()
                 .phone(phone)
                 .build();
     }
 
-    public UserDTO addUser(String firstName){
+    public UserDTO addUser(String firstName) {
         Response response = given(createRequestSpecification())
                 .body(userDTO(firstName))
                 .post(Constants.ADD_USER_ENDPOINT);
@@ -46,7 +47,7 @@ public class RequestServices {
     public ContactsDTO addContact(String phone, int userId) {
         Response response = given(createRequestSpecification())
                 .body(contactsDTO(phone))
-                .post(String.format(Constants.ADD_CONTACT_PATH_TEMPLATE,userId));
+                .post(String.format(Constants.ADD_CONTACT_PATH_TEMPLATE, userId));
         return response.getBody().as(ContactsDTO.class);
     }
 

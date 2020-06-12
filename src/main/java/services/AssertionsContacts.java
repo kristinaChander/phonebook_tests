@@ -17,6 +17,7 @@ public class AssertionsContacts {
     public AssertionsContacts(Response contactsResponse) {
         this.contactsResponse = contactsResponse;
     }
+
     public AssertionsContacts verifyContactsAnswerNotEmptyBody() {
         assertThat(contactsDTO).isNotNull();
         return this;
