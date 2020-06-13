@@ -2,7 +2,7 @@
 2. Tests are in the src folder
 3. Report for tests run are generated via Allure report
 
-To get the report:
+To get the report for tests run:
 - Run tests
 - Maven menu ->Plugins->allure->report
 - See the report in the folder target->site->allure-maven-plugin->index.html - open in browser
