@@ -1,0 +1,49 @@
+Bug Id : 1
+Header :|Impossible to delete an existing contact of an existing user at endpoint /users/{userId}/contacts/{contactId}
+Environment : base URI http://localhost:8080, ios – Windows 10
+Priority - high
+Severity - major
+Author – Kristina Chander
+Assignee – Donald Trump
+
+Preconditions:
+1. Send a post request with body {"firstName":"Evelyne" }to endpoint /users/
+2. Get the created user id({userId}) from response
+3. Send a post request with body {“phone”:”1111111111” }to endpoint /users/{userId}/contacts
+4. Get the created contact id ({contactId}) from response
+
+Steps to reproduce:
+1. Send a delete request to endpoint /users/{userId}/contacts/{contactId}
+
+Actual result:
+Error message "Contact with id:{contactId} not found" is returned in the answer body, status code is 404
+
+Expected result:
+Contact is successfully deleted, response body is empty, status code is 202
+
+
+
+
+
+Bug Id : 2
+Header :|System allows  to delete an existing contact of an existing user if userId and contactId are mixed up at endpoint /users/{userId}/contacts/{contactId}
+Environment : base URI http://localhost:8080, ios – Windows 10
+Priority - high
+Severity - major
+Author – Kristina Chander
+Assignee – Donald Trump
+
+Preconditions:
+1. Send a post request with body {"firstName":"Evelyne" }to endpoint /users/
+2. Get the created user id({userId}) from response
+3. Send a post request with body {“phone”:”1111111111” }to endpoint /users/{userId}/contacts
+4. Get the created contact id ({contactId}) from response
+
+Steps to reproduce:
+1. Send a delete request to endpoint /users/{contactId}/contacts/{usertId}
+
+Actual result:
+Contact is successfully deleted, response body is empty, status code is 202
+
+Expected result:
+Error message "Contact with id:{userId} not found" is returned in the answer body, status code is 404
