@@ -9,6 +9,5 @@
         <packages>
             <package name="scenarios"/>
         </packages>
-
     </test>
 </suite>
