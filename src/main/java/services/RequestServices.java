@@ -17,7 +17,7 @@ public class RequestServices {
     public RequestSpecification createRequestSpecification() {
         RestAssured.enableLoggingOfRequestAndResponseIfValidationFails();
         RequestSpecification specification = new RequestSpecBuilder()
-                .setBaseUri(Constants.BASE_URI)
+                .setBaseUri(PropertyUtil.TEST_PROPERTIES.getProperty("baseURI"))
                 .addFilter(new RequestLoggingFilter())
                 .addFilter(new ResponseLoggingFilter())
                 .addHeader("Content-Type", "application/json")
