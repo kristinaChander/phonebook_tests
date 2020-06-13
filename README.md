@@ -6,11 +6,15 @@ To get the report:
 - Maven menu ->Plugins->allure->report
 - See the report in the folder target->site->allure-maven-plugin->index.html - open in browser
 4. To run tests:
+
 Via terminal command line:
+
 - All tests: mvn clean test
 - Negative tests: mvn clean test -PNegative
 - Positive tests: mvn clean test -PPositive
+
 Via maven menu:
+
 - All tests: phonebook_tests-> Lifrcycle->clean + test, then click run Maven Build
 - Negative tests: Profiles - tick Negative,phonebook_tests->Lifrcycle->clean + test, then click Run Maven Build
 - Positive tests:Profiles - tick Positive,phonebook_tests-> Lifrcycle->clean + test, then click Run Maven Build
