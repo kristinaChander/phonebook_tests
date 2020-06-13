@@ -1,6 +1,7 @@
 1. Test plan is in "Test plan.txt"
 2. Tests are in the src folder
 3. Report for tests run are generated via Allure report
+
 To get the report:
 - Run tests
 - Maven menu ->Plugins->allure->report
