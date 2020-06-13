@@ -9,7 +9,9 @@ To get the report for tests run:
 
 4. To run tests:
 
-Via terminal command line:
+Make sure the application is in run on uri specified in baseURI property in test.properties file(http://localhost:8080/ by default)
+
+Run tests via terminal command line:
 
 - All tests: mvn clean test
 - Negative tests: mvn clean test -PNegative
