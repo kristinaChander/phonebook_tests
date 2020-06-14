@@ -2,9 +2,6 @@ Test plan
 
 FUNCTIONAL TESTS
 
-Note! Some tests are repeated because they can be performed while checking different features separately.
- While checking the whole product we may omit repeating tests.
-
 User operations
 
 FEATURE – add a new user

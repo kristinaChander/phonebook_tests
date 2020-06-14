@@ -1,6 +1,6 @@
 Bug Id : 1
 Header :|Impossible to delete an existing contact of an existing user at endpoint /users/{userId}/contacts/{contactId}
-Environment : base URI http://localhost:8080, ios – Windows 10
+Environment : base URI http://localhost:8080
 Priority - high
 Severity - major
 Author – Kristina Chander
@@ -26,8 +26,8 @@ Contact is successfully deleted, response body is empty, status code is 202
 
 
 Bug Id : 2
-Header :|System allows  to delete an existing contact of an existing user if userId and contactId are mixed up at endpoint /users/{userId}/contacts/{contactId}
-Environment : base URI http://localhost:8080, ios – Windows 10
+Header :System allows  to delete an existing contact of an existing user if userId and contactId are mixed up at endpoint /users/{userId}/contacts/{contactId}
+Environment : base URI http://localhost:8080
 Priority - high
 Severity - major
 Author – Kristina Chander

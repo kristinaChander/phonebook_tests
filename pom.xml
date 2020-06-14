@@ -109,7 +109,7 @@
                 <artifactId>allure-maven</artifactId>
                 <version>${allure-maven-plugin.version}</version>
                 <configuration>
-                    <resultsDirectory>${project.basedir}/allure-results</resultsDirectory>
+                    <resultsDirectory>${project.basedir}/target/allure-results</resultsDirectory>
                     <reportVersion>${allure.version}</reportVersion>
                 </configuration>
             </plugin>
