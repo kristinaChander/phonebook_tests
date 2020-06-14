@@ -2,6 +2,8 @@ package scenarios;
 
 import constants.Constants;
 import dto.UserDTO;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Story;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import services.AssertionsUser;
@@ -15,6 +17,9 @@ public class CreateUserNegative {
         requestServices = new RequestServices();
     }
 
+
+    @Feature(value = "User creation")
+    @Story(value = "Create a user with name length<2")
     @Test(groups = {"negative"},
             description = "checking the possibility to create a user with the name length less than 2 characters")
     public void createUserTooShortName() {

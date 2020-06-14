@@ -1,6 +1,8 @@
 package scenarios;
 
 import constants.Constants;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Story;
 import io.restassured.response.Response;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -15,6 +17,8 @@ public class DeleteContactPositive {
         requestServices = new RequestServices();
     }
 
+    @Feature(value = "Contact deleting")
+    @Story(value = "Delete a contact with existing Id")
     @Test(groups = {"positive"},
             description = "checking the possibility to delete existing user contact")
     public void deleteExistingContact() {

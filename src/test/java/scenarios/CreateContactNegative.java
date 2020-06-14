@@ -2,12 +2,15 @@ package scenarios;
 
 import constants.Constants;
 import dto.ContactsDTO;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Story;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import services.AssertionsContacts;
 import services.RequestServices;
 
 public class CreateContactNegative {
+
     private RequestServices requestServices;
 
     @BeforeMethod(groups = "negative")
@@ -15,6 +18,8 @@ public class CreateContactNegative {
         requestServices = new RequestServices();
     }
 
+    @Feature(value = "Contact creation")
+    @Story(value = "Create a contact with wrong phone")
     @Test(groups = {"negative"},
             description = "checking if the service allows to create a contact with a phone number in wrong format")
     public void createContactPhoneWrongFormat() {
