@@ -9,31 +9,32 @@ HTTP METHOD – post
 ENDPOINT - /users
 
 Positive tests:
-request body: only “firstName” (requested field), type – String, length 2-15 symbols
-request body: requested field(“firstName”), 1 unnecessary field(“lastName”) of correct type
-request body: requested field of correct type and length, all unnecessary fields of correct type
+- request body: only “firstName” (requested field), type – String, length 2-15 symbols
+- request body: requested field(“firstName”), 1 unnecessary field(“lastName”) of correct type(String)
+- request body: requested field of correct type and length, all unnecessary fields of correct type (compliant to dto)
 
 Negative tests:
-request body: empty body
-request body: no requested field (null)/requested field is empty string””
-request body: special symbols in the requested field
-request body: sql injections in the requested field
-request body: requested field of incorrect type (number, boolean)
-request body: requested field length is less than 2/ more than 15 symbols
-request body: indicate id with incorrect data type – string or boolean instead of integer
-request body: try to create already existing user
-request body: insert redundant fields, not compliant with user dto schema
+- request body: empty body
+- request body: no requested field (null), one unnecessary field
+- requested field is empty string””
+- request body: special symbols in the requested field
+- request body: sql injections in the requested field(')
+- request body: requested field of incorrect type (number, boolean)
+- request body: requested field length is less than 2/ more than 15 symbols
+- request body: indicate id with incorrect data type – string or boolean instead of integer
+- request body: try to create already existing user
+- request body: insert redundant fields, not compliant with user dto schema
 
 FEATURE – remove a user
 HTTP METHOD – delete
 ENDPOINT - /users/{userId}
 
 Positive tests
-existing user id of correct type (integer)
+ - existing user id of correct type (integer)
 
 Negative tests
-try to delete a user that does not exist (no use with such an id)
-indicate id of incorrect type – ex. string  or boolean
+- try to delete a user that does not exist (no use with such an id)
+- indicate id of incorrect type – ex. string  or boolean
 
 
 FEATURE – change a user
@@ -41,19 +42,20 @@ HTTP METHOD – put
 ENDPOINT - /users/{userId}
 
 Positive tests
-existing user id of correct type (integer) and at least a required field (firstName) of correct type and length in the request body.
+- existing user id of correct type (integer) and at least one required field (firstName) of correct type (compliant with dto) and length in the request body.
 
 Negative tests
-id that does not exist (no use with such an id)
-id of incorrect type – ex. string  or boolean
-parallel  requests trying to change the same user
-request body: empty body
-request body: no requested field (null)/requested field is empty string””
-request body: special symbols in the requested field
-request body: sql injections in the requested field
-request body: requested field of incorrect type (number, boolean)
-request body: requested field length is less than 2/ more than 15 symbols
-request body: insert redundant (not existing in dto schema) fields, not compliant with user dto schema
+- id that does not exist (no use with such an id)
+- id of incorrect type – ex. string  or boolean
+- parallel  requests trying to change the same user
+- request body: empty body
+- request body: no requested field (null) + one unnecessary field
+- requested field is empty string(””)
+- request body: special symbols in the requested field
+- request body: sql injections in the requested field
+- request body: requested field of incorrect type (number, boolean)
+- request body: requested field length is less than 2/ more than 15 symbols
+- request body: insert redundant (not existing in dto schema) fields, not compliant with user dto schema
 
 
 FEATURE – find a user
@@ -61,20 +63,22 @@ HTTP METHOD – get
 ENDPOINT - /users/search
 
 Positive tests
-indicate existing user name in parameters (parameter “name”)
+- indicate existing user name in parameters (parameter “name”)
 Negative tests
-indicate user name that does not exist in parameters
-parameter “name” is null/ empty “”
-parameter “name” is a number, boolean
-parameter “name” contains special characters
-sql injections in parameter “name”
+- indicate user name that does not exist in parameters
+- parameter “name” is null/ empty “”
+- parameter “name” is a number, boolean
+- parameter “name” contains special characters
+- sql injections in parameter “name”
 
 FEATURE – get a list of all users
 HTTP METHOD – get
 ENDPOINT - /users
 
 Positive tests
-make a request and make sure that user list in the response body is not empty
+- make a request and make sure that user list in the response body is not empty
+
+
 
 Contact operations
 
@@ -83,96 +87,109 @@ HTTP METHOD – post
 ENDPOINT - /users /{userId}/contacts
 
 Positive tests
-existing user id and  the required field (phone) in the request body is in correct format: string of exactly 10 digits
-existing user id,  the required field (phone) in the request body is in correct format: string of exactly 10 digits, any optional field is of type compliant with  contacts dto schema
-existing user id,  the required field (phone) in the request body is in correct format: string of exactly 10 digits, all optional fields  are of type compliant with  contacts dto schema
+- existing user id and  the required field (phone) in the request body is in correct format: string of exactly 10 digits
+- existing user id,  the required field (phone) in the request body is in correct format: string of exactly 10 digits, any optional field is of type compliant with  contacts dto schema
+- existing user id,  the required field (phone) in the request body is in correct format: string of exactly 10 digits, all optional fields  are of type compliant with  contacts dto schema
 Negative tests
-id does not exist
-id is not a number (ex. boolean, string, special characters)
-request body: phone field has more or less than 10 digits
-request body: phone field has symbols other than digits – alphabetic, special symbols,sql injections
-request body: phone field is empty string or null
-request body: insert fields that don't exist in dto schema
+- user id does not exist in data base, but the format is compliant with dto
+- user id is not a number (ex. boolean, string, special characters)
+- request body: phone field has more or less than 10 digits
+- request body: phone field has symbols other than digits – alphabetic
+- request body: phone field has symbols other than digits - special symbols
+- request body: phone field has symbols other than digits - sql injections
+- request body: phone field is empty string
+- request body: phone field is null
+- request body: insert fields that don't exist in dto schema
 
 FEATURE – delete a contact
 HTTP METHOD – delete
 ENDPOINT - /users /{userId}/contacts/{contactId}
 
 Positive tests
-existing user id and contact id
+- indicate existing user id and contact id
 Negative tests
-userId (or contactId) not a number (string, boolean)
-userId (or contactId) is empty
-userId (or contactId) does not exist
+- userId is not a number (string, boolean, special characters)
+- contactId is not a number (string, boolean, special characters)
+- userId  is empty
+- contactId is empty
+- userId does not exist in data base, but the format is compliant with dto
+- contactId does not exist in data base, but the format is compliant with dto
 
 FEATURE – change a contact
 HTTP METHOD – put
 ENDPOINT - /users /{userId}/contacts/{contactId}
 
 Positive tests
-existing user id and contact id + request body: the requested field (phone) is a string of exactly 10 digits
+- existing user id and contact id + request body: the requested field (phone) is a string of exactly 10 digits
 Negative tests
-id(ids) does not exist
-id(ids) is not a number (ex. boolean, string, special characters)
-request body: phone field has more or less than 10 digits
-request body: phone field has symbols other than digits – alphabetic, special symbols, sql injections
-request body: phone field is empty string or null
-request body: insert fields that don't exist in dto schema
-parallel requests, trying to change the same contact
+- userId is not a number (string, boolean, special characters)
+- contactId is not a number (string, boolean, special characters)
+- userId  is empty
+- contactId is empty
+- userId does not exist in data base, but the format is compliant with dto
+- contactId does not exist in data base, but the format is compliant with dto
+- request body: phone field has more or less than 10 digits
+- request body: phone field has symbols other than digits – alphabetic
+- request body: phone field has symbols other than digits - special symbols
+- request body: phone field has symbols other than digits - sql injections
+- request body: phone field is empty string
+- request body: phone field is null
+- request body: insert fields that don't exist in dto schema
+- parallel requests, trying to change the same contact
 
 FEATURE – find a contact in the user's phone book by a phone number
 HTTP METHOD – get
 ENDPOINT - /users /{userId}/contacts/search
 
 Positive tests
-existing userId +  parameter “number” - existing phone number
+- existing userId +  parameter “number” - existing phone number
 Negative tests
-userId  does not exist
-parameter “number”  - phone number that does not exist
-userId – not a number (string, boolean, special symbols)
-userId is empty string
-parameter “number” is anything but string of 10 digits
+- userId  does not exist in data base, but the format is compliant with dto
+- parameter “number”  - phone number that does not exist in data base, but the format is compliant with dto
+- userId – not a number (string, boolean, special symbols)
+- userId is empty string
+- parameter “number” is anything but string of 10 digits
 
-FEATURE – find a contact in the user's phone book ba an id
+FEATURE – find a contact in the user's phone book by an id
 HTTP METHOD – get
 ENDPOINT - /users /{userId}/contacts/{contactId}
 
 Positive tests
-existing userId + existing contactId
+- existing userId + existing contactId
 Negative tests
-userId  does not exist
-contactId does not exist
-userId – not a number (string, boolean, special symbols)
-userId is empty string
-contactId – not a number (string, boolean, special symbols)
-contactid is an empty string
+- userId  does not exist in data base, but the format is compliant with dto
+- contactId does not exist in data base, but the format is compliant with dto
+- userId – not a number (string, boolean, special symbols)
+- userId is empty string
+- contactId – not a number (string, boolean, special symbols)
+- contactid is an empty string
 
 FEATURE – get a list of all users' contacts
 HTTP METHOD – get
 ENDPOINT - /users /{userId}/contacts
 
 Positive tests
-make a request and make sure that users' contacts list in the response body is not empty
+-indicate userID existing in data base, the format is compliant with dto. Make a request and make sure that users' contacts list in the response body is not empty
 
 
 RESPONSE CODES TESTING
 
 Make sure response codes and messages fit the request/response results
 
-404 if resource does not exist, message format complies with dto schema
-400 if request is not valid, message format complies with dto schema
-200 if operation successfully completed, message format complies with dto schema
-202 if request accepted, message format complies with dto schema
-201 if a resource created, message format complies with dto schema
-409 if there is a conflict (parallel api calls), message format complies with dto schema
+- 404 if resource does not exist, message format complies with dto schema
+- 400 if request is not valid, message format complies with dto schema
+- 200 if operation successfully completed, message format complies with dto schema
+- 202 if request accepted, message format complies with dto schema
+- 201 if a resource created, message format complies with dto schema
+- 409 if there is a conflict (parallel api calls), message format complies with dto schema
 
 NON FUNCTIONAL TESTING
 
 Performance
 
-load – emulate simultaneous requests of 1000 users to the same endpoint
-stress - emulate simultaneous requests of 100000000000 users to the same endpoint
-stability – work with the product for a week, without restarting application
+- load – emulate simultaneous requests of 1000 users (let's take 1000 is an max acceptable level due to specification) to the same endpoint
+- stress - emulate simultaneous requests of 100000000000 users to the same endpoint
+- stability – work with the product for a week, without restarting application
 
 
 
