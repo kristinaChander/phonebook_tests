@@ -13,7 +13,7 @@ public class CreateUserPositive {
 
     private RequestServices requestServices;
 
-    @BeforeMethod(groups = "positive")
+    @BeforeMethod(groups = {"positive"})
     public void setUp() {
         requestServices = new RequestServices();
     }

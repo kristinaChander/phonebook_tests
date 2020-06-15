@@ -12,7 +12,7 @@ import services.RequestServices;
 public class CreateUserNegative {
     private RequestServices requestServices;
 
-    @BeforeMethod(groups = "negative")
+    @BeforeMethod(groups = {"negative"})
     public void setUp() {
         requestServices = new RequestServices();
     }

@@ -12,7 +12,7 @@ import services.RequestServices;
 public class DeleteContactPositive {
     private RequestServices requestServices;
 
-    @BeforeMethod(groups = "positive")
+    @BeforeMethod(groups = {"positive"})
     public void setUp() {
         requestServices = new RequestServices();
     }

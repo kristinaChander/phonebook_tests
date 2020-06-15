@@ -16,13 +16,12 @@ public class RequestServices {
 
     public RequestSpecification createRequestSpecification() {
         RestAssured.enableLoggingOfRequestAndResponseIfValidationFails();
-        RequestSpecification specification = new RequestSpecBuilder()
+        return new RequestSpecBuilder()
                 .setBaseUri(PropertyUtil.TEST_PROPERTIES.getProperty("baseURI"))
                 .addFilter(new RequestLoggingFilter())
                 .addFilter(new ResponseLoggingFilter())
                 .addHeader("Content-Type", "application/json")
                 .build();
-        return specification;
     }
 
     public UserDTO userDTO(String firstName) {

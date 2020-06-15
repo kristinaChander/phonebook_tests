@@ -13,7 +13,7 @@ public class CreateContactNegative {
 
     private RequestServices requestServices;
 
-    @BeforeMethod(groups = "negative")
+    @BeforeMethod(groups = {"negative"})
     public void setUp() {
         requestServices = new RequestServices();
     }

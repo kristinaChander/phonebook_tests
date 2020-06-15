@@ -7,7 +7,7 @@ import lombok.SneakyThrows;
 import java.util.Properties;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public final class PropertyUtil {
+public final class PropertyUtil{
 
     public static final Properties TEST_PROPERTIES = getProperties("test.properties");
 
